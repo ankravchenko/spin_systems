@@ -1,4 +1,5 @@
 #implementation of data complexity estimation heuristics: http://people.sabanciuniv.edu/~berrin/cs512/reading/ho-complexity.pdf
+#look at table 1 at p5
 
 import numpy as np
 import h5py
@@ -15,6 +16,11 @@ def feature_mean_and_variance(data,labels,class_label):
 	class_indices=np.where(labels==class_label)
 	class_values=data[class_indices]
 	return np.mean(class_values, axis=0), np.std(class_values, axis=0)
+
+def find_nearest_distance(data, point):
+	#calculate Eucleadean distance to all other points
+	#pick min (exclude comparison to self)
+
 
 f = h5py.File('data/kagome_open_16.h5') #spin-ed-master/data/square_16_nonperiodic.h5
 
@@ -64,6 +70,29 @@ class) neighbor is closer to a point, this measure takes into
 account the magnitudes of the differences.
 '''
 
+#######Measures of Geometry, Topology, and Density of Manifolds##########
 
+#Nonlinearity
 
+#Space Covering by epsilon-Neighborhoods 
 
+'''
+The relevance of other measures is less obvious. For
+example, it is not clear what can be inferred from the
+intrinsic dimensionality of a problem without differentia-
+tion by class. A problem can be very complex even if
+embedded in a low-dimensional space 5e.g., randomly
+labeled points along a one-dimensional space have a
+complex class boundary). Also, variation in density within
+a manifold seems irrelevant as long as the manifolds can be
+easily separated. Similarly, existences of submanifolds of
+one class surrounding those of the other 5e.g., consider two
+classes black and white on a checkerboard) may make a
+problem difficult for, say, a linear classifier, but may not
+affect a nearest-neighbor classifier by much. Nevertheless,
+in discussions on curse of dimensionality, the number of
+samples is often compared to the number of feature
+dimensions. To relate to such discussions, we include the
+average number of samples per dimension as another
+measure 5T2).
+'''
