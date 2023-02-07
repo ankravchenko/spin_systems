@@ -61,7 +61,7 @@ transform=np.random.randint(1, 5, size=(len(npdata[0])*10,len(npdata[0])))
 
 npdata=np.asarray([transform.dot(x) for x in npdata])
 
-idx = np.random.choice(np.arange(len(labels)), 10000, replace=False)
+idx = np.random.choice(np.arange(len(labels)), 1000, replace=False)
 data_sample = npdata[idx]
 labels_sample = labels[idx]
 
@@ -88,7 +88,7 @@ class_b_mean, class_b_std=feature_mean_and_variance(npdata,labels,class_b)
 #Fisher's Discriminant Ratio 
 fdr=[(class_a_mean[i]-class_b_mean[i])**2 /(class_a_std[i]**2+class_b_std[i]**2) for i in range(0,len(class_a_mean))]
 
-print('FDR: ', fdr)
+#print('FDR: ', fdr)
 #volume of overlap regions - not applicable, value ranges are the same
 
 #feature efficiency: to do. FIXME
@@ -127,11 +127,10 @@ for i in range(0,len(labels_sample)):
 			else:
 				intraclass.append(mindist)
 		if labels[i] == class_b:
-			if labels[i] == class_a:
-				if a_distance<b_distance:
-					intraclass.append(mindist)
-				else:
-					interclass.append(mindist)		
+			if a_distance<b_distance:
+				intraclass.append(mindist)
+			else:
+				interclass.append(mindist)		
 
 interclass_m=np.mean(interclass)
 intraclass_m=np.mean(interclass)
